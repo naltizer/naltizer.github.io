@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="pano"></div>
+    <script src="js/es5-shim.js"></script>
+    <script src="js/requestAnimationFrame.js"></script>
+    <script src="js/marzipano.js"></script>
+    <script>
+    
+    //var options = { swfPath: "swf/marzipano.swf"};
+    //var viewer = new Marzipano.Viewer(element, options);
+
+    var panoElement = document.getElementById('pano');
+    var viewerOpts = {
+        controls: {
+            mouseViewMode: 'drag'
+        }
+    };
+
+    var viewer = new Marzipano.Viewer(panoElement, viewerOpts)
+
+    var levels = [
+        { tileSize: 512, size: 512 },
+        { tileSize: 512, size: 512}
+    ];
+
+    var geometry = new Marzipano.CubeGeometry(levels);
+    var source = Marzipano.ImageUrlSource.fromString("img/test.jpg");
+    var view = new Marzipano.RectilinearView();
+
+    var scene = viewer.createScene({
+        source: source,
+        geometry: geometry,
+        view: view
+    });
+    </script>
+</body>
+</html>
